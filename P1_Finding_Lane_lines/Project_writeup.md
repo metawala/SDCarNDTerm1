@@ -31,6 +31,10 @@ I introduce a new function - IdentifyLaneMarkings(). Detailed comments for this 
 6. Apply region of interest
 7. Use weighted_img to apply mask on original image
 
+| [![Sample Image](./test_images/solidWhiteRight.jpg)](./test_images/solidWhiteRight.jpg "Sample Image") | [![Output Image](./test_images_output/solidWhiteRight.jpg)](./test_images_output/solidWhiteRight.jpg "Output Image") |
+|:---:|:---:|
+| ./test_images/solidWhiteRight.jpg | ./test_images_output/solidWhiteRight.jpg |
+
 ![alt-text-1](./test_images/solidWhiteRight.jpg "Sample Image") ![alt-text-2](./test_images_output/solidWhiteRight.jpg "Output Image")
 
 ### 2. Working on videos and updating draw_lines().
