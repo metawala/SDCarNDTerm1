@@ -110,8 +110,11 @@ If a well known architecture was chosen:
 I downloaded 10 random images from the internet. These images are saved in ./Downloaded_images/*. 
 
 Here are the images I got from the wed:
-
-![alt text][image2] ![alt text][image3] ![alt text][image4] ![alt text][image5] ![alt text][image6] ![alt text][image7] ![alt text][image8] ![alt text][image9] ![alt text][image10] ![alt text][image11]
+| ![alt text][image2] | ![alt text][image3] | ![alt text][image4] | ![alt text][image5] |
+|---------------------|---------------------|---------------------|---------------------|
+| ![alt text][image6] | ![alt text][image7] | ![alt text][image8] | ![alt text][image9] |
+|---------------------|---------------------|---------------------|---------------------|
+| ![alt text][image10] | ![alt text][image11] |                   |                     |
 
 I decided not to modify any of these images to test how much it affects the accuracy during classification. The result shows that it does not make a very big difference. May be the results could have been more accurate if the images were to be resized to (32, 32,x) but we have not tested that. Also we use 1 of the signs which belong to an older version of German traffic sign.
 
