@@ -110,8 +110,9 @@ If a well known architecture was chosen:
 I downloaded 10 random images from the internet. These images are saved in ./Downloaded_images/*. 
 
 Here are the images I got from the wed:
+| Image               | Image               | Image               | Image                       |
+|:-------------------:|:-------------------:|:-------------------:|:-------------------:|
 | ![alt text][image2] | ![alt text][image3] | ![alt text][image4] | ![alt text][image5] |
-|---------------------|---------------------|---------------------|---------------------|
 | ![alt text][image6] | ![alt text][image7] | ![alt text][image8] | ![alt text][image9] |
 |---------------------|---------------------|---------------------|---------------------|
 | ![alt text][image10] | ![alt text][image11] |                   |                     |
@@ -121,7 +122,7 @@ I decided not to modify any of these images to test how much it affects the accu
 Here are the results of the prediction:
 
 | Image			        |     Prediction                    |Probability |
-|:---------------------:|:----------------------------------|------------|
+|:---------------------:|:----------------------------------|:----------:|
 | Turn right ahead 		| Turn right ahead			        | 1.0        |
 | Caution ahead 		| General Caution			        | 1.0        |
 | Stop sign		    	| Priority road				        | 1.0        |
