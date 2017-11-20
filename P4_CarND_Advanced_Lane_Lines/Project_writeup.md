@@ -1,11 +1,5 @@
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
+# **Advanced Lane Finding Project**
 ---
-
-**Advanced Lane Finding Project**
-
 The goals / steps of this project are the following:
 
 * Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
@@ -19,7 +13,6 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/undistort_output.png "Undistorted"
 [image2]: ./test_images/test1.jpg "Road Transformed"
 [image3]: ./examples/binary_combo_example.jpg "Binary Example"
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
@@ -35,28 +28,48 @@ The goals / steps of this project are the following:
 
 ### Writeup / README
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
-
-You're reading it!
+This writeup talks about the the Advanced Lane Lines project. A few of my other colleagues are also taking this degree program and hence we do collaborate at times to discuss some strategies that might help improve the output of these projects. The implementational details of items mentioned here can be in this [notebook](https://github.com/metawala/SDCarNDTerm1/blob/master/P4_CarND_Advanced_Lane_Lines/Advanced_Lane_Lines.ipynb)
 
 ### Camera Calibration
 
-#### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
+#### 1. Briefly state how we computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
-The code for this step is contained in the first code cell of the IPython notebook located in "./examples/example.ipynb" (or in lines # through # of the file called `some_file.py`).  
+The project starts with camera calibration and distortion correction on chessboard images. The implementation details of this is in the *"Find Chess Board corner"* section and *Create helper functions for camera calibration and undistorting or image* section of the notebook. We introduce the following helper functions:
+1. calibrateCamera()
+2. undistortImage()
+3. getRGBImage()
 
-I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
+To detect chess board corners, we follow project videos preceeding this particular project. The steps taken:
+1. Import the image and define the number of object points. (9, 6) for our case.
+2. Convert the image to gray scale.
+3. Use findChessboardCorners() method from CV2 library.
+4. If the above step found a corner then we use drawChessboardCorners() method from CV2 library and plot the detected corners.
 
-I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
+An example of this implementation:
+| [![Test chess image](./camera_cal/calibration10.jpg)](./camera_cal/calibration10.jpg "Test chess image") | [![Corner detected image](./output_images/corners_chessboard_output.png)](./output_images/corners_chessboard_output.png "Corner detected image") |
+|:---:|:---:|
+| Test chess image | Corner detected image |
 
-![alt text][image1]
+To undistort chess board test image and calibrate the camera, we follow project videos preceeding this particular project. The steps taken:
+1. We create a calibrateCamera() function to get the cameraMatrix, distCoeff, rotationalVec, transVec and corners.
+2. Using this we use the undistort() method from CV2 library.
+3. The calibrateCamera() method internally makes use of the calibrateCamera() method from CV2 library.
+
+An example of this implementation:
+| [![Test chess image](./camera_cal/calibration10.jpg)](./camera_cal/calibration10.jpg "Test chess image") | [![Undistorted image](./output_images/undistorted_chessboard_output.png)](./output_images/undistorted_chessboard_output.png "Undistorted image") |
+|:---:|:---:|
+| Test chess image | Undistorted image |
 
 ### Pipeline (single images)
 
 #### 1. Provide an example of a distortion-corrected image.
 
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
-![alt text][image2]
+Above described distortion correction technique and camera calibration is then applied to the test images.
+
+An example of this implementation:
+| [![Test image](./test_images/test2.jpg)](./test_images/test2.jpg "Test image") | [![Undistorted image](./output_images/undistorted_test_output.png)](./output_images/undistorted_test_output.png "Undistorted image") |
+|:---:|:---:|
+| Test image | Undistorted image |
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
