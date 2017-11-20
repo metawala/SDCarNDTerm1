@@ -13,12 +13,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image2]: ./test_images/test1.jpg "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
-[video1]: ./project_video.mp4 "Video"
+[image1]: ./output_images/output.png "Output"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
@@ -57,6 +52,20 @@ To undistort chess board test image and calibrate the camera, we follow project 
   Test chess image | Undistorted image 
 
 ### Pipeline (single images)
+
+The main idea during for this pipeline is:
+1. Undistort, threshold and transform an image
+2. Check if any points to do exist then follow lecture note videos:
+  1. Get Histogram of lower half of the image
+  2. Calculate midpoint and peaks
+  3. Initialize variables
+  4. Iterate through each window from all windows - identify window boundaries, nonzero pixels in x and y, concatenate array of indices and fit a second order polynomial.
+3. Generate x and y values for plotting
+4. Create an image to draw the lines on
+5. Recast the x and y points into usable format for cv2.fillPoly()
+6. Warp the blank back to original image space
+7. Fit new polynomials to x,y in world space and calculate the radius of curvature
+8. Define the font to be used and overlay text on the image
 
 #### 1. Provide an example of a distortion-corrected image.
 
@@ -115,19 +124,23 @@ Following image shows the result of the above mentioned implemenational details.
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+The commented section is our pipeline shows the final overlaying of lane-line pixles and sliding window techniques. This is present in lines 144-183. Though this is where we use the overlaying some of the calculation required is done right before this section of the code.
 
-![alt text][image5]
+Once we apply the steps above we get the following:
+
+ [![Sliding window laneLines](./output_images/slidingWindow_laneLines.png)](./output_images/slidingWindow_laneLines.png "Sliding window laneLines") | [![Lane Lines Pixel](./output_images/laneLinesPixel.png)](./output_images/laneLinesPixel.png "Lane Lines Pixel") 
+ --- | --- 
+  Sliding window laneLines | Lane Lines Pixel
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+Once we wrap the blank back back to original image space using inverse perspective matrix and combine the result in the **Pipeline()** method. We calculate the radius of curvature of the lane. I use the same methods that are taught in lecture notes. This is done from lines 208-225.
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+Here is an example of my result on a test image:
 
-![alt text][image6]
+![alt text][image1]
 
 ---
 
@@ -135,7 +148,7 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Click on the screenshot below to navigate to my project video. [![IMAGE ALT TEXT](./output_images/output.png)](https://youtu.be/m5R33ddrpgY "Project Output")
 
 ---
 
@@ -143,4 +156,7 @@ Here's a [link to my video result](./project_video.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+1. I started off with a basic crude model and using the code presented in lectures exactly as is. Once I had all the code I started playing with the mask values and types to generate a decent thresholded image.
+2. To verify if lanes were detected correctly I used the histogram method on my warped image. Once this was a success, I decided to go ahead with the pipeline implementation.
+3. I followed exact steps mentioned in lecture notes. Along with a few discussions with my colleages, I updated the code to iteratively improve to produce what I have submitted here.
+4. The current implementation is sort of hardcoded to fit this particular test images and videos. It would be interesting to test this implementation with other situations.
