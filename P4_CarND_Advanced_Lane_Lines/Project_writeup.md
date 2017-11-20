@@ -68,9 +68,16 @@ Above described distortion correction technique and camera calibration is then a
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
+Currently for this part of the implementation we make use of the thresholding techniques shown in the lectures. We use magnitude, directional and color thresholding. Later in the project we revise the thresholding, but for this part we follow:
+1. Undistort the image
+2. Convert to Grayscale
+3. Perform Abs Sobel threshold on X and Y
+4. Perform a Magnitude threshold
+5. Perform a Directioal threshold
+6. Perfom a L and S threshold
+7. Combine applied threshold
 
-![alt text][image3]
+[![Thresholding image](./output_images/thresholdedImage.png)](./output_images/thresholdedImage.png "Thresholding image")
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
