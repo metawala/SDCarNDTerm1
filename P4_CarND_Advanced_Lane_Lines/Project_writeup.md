@@ -45,19 +45,16 @@ To detect chess board corners, we follow project videos preceeding this particul
 3. Use findChessboardCorners() method from CV2 library.
 4. If the above step found a corner then we use drawChessboardCorners() method from CV2 library and plot the detected corners.
 
- [![Test chess image](./camera_cal/calibration10.jpg)](./camera_cal/calibration10.jpg "Test chess image") | [![Corner detected image](./output_images/corners_chessboard_output.png)](./output_images/corners_chessboard_output.png "Corner detected image") 
- --- | --- 
- Test chess image | Corner detected image 
+ [![chess image](./output_images/corners_chessboard_output.png)](./output_images/corners_chessboard_output.png "chess image")
 
 To undistort chess board test image and calibrate the camera, we follow project videos preceeding this particular project. The steps taken:
 1. We create a calibrateCamera() function to get the cameraMatrix, distCoeff, rotationalVec, transVec and corners.
 2. Using this we use the undistort() method from CV2 library.
 3. The calibrateCamera() method internally makes use of the calibrateCamera() method from CV2 library.
 
-An example of this implementation:
-| [![Test chess image](./camera_cal/calibration10.jpg)](./camera_cal/calibration10.jpg "Test chess image") | [![Undistorted image](./output_images/undistorted_chessboard_output.png)](./output_images/undistorted_chessboard_output.png "Undistorted image") |
-|:---:|:---:|
-| Test chess image | Undistorted image |
+ [![Test chess image](./camera_cal/calibration10.jpg)](./camera_cal/calibration10.jpg "Test chess image") | [![Undistorted image](./output_images/undistorted_chessboard_output.png)](./output_images/undistorted_chessboard_output.png "Undistorted image") 
+ --- | --- 
+  Test chess image | Undistorted image 
 
 ### Pipeline (single images)
 
@@ -67,7 +64,7 @@ Above described distortion correction technique and camera calibration is then a
 
 An example of this implementation:
  [![Test image](./test_images/test2.jpg)](./test_images/test2.jpg "Test image") | [![Undistorted image](./output_images/undistorted_test_output.png)](./output_images/undistorted_test_output.png "Undistorted image") 
---- | --- 
+ --- | --- 
  Test image | Undistorted image 
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
