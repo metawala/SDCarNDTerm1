@@ -62,10 +62,9 @@ To undistort chess board test image and calibrate the camera, we follow project 
 
 Above described distortion correction technique and camera calibration is then applied to the test images.
 
-An example of this implementation:
  [![Test image](./test_images/test2.jpg)](./test_images/test2.jpg "Test image") | [![Undistorted image](./output_images/undistorted_test_output.png)](./output_images/undistorted_test_output.png "Undistorted image") 
  --- | --- 
- Test image | Undistorted image 
+  Test image | Undistorted image
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
