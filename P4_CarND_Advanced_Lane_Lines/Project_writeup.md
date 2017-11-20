@@ -45,10 +45,9 @@ To detect chess board corners, we follow project videos preceeding this particul
 3. Use findChessboardCorners() method from CV2 library.
 4. If the above step found a corner then we use drawChessboardCorners() method from CV2 library and plot the detected corners.
 
-An example of this implementation:
-| [![Test chess image](./camera_cal/calibration10.jpg)](./camera_cal/calibration10.jpg "Test chess image") | [![Corner detected image](./output_images/corners_chessboard_output.png)](./output_images/corners_chessboard_output.png "Corner detected image") |
-|:---:|:---:|
-| Test chess image | Corner detected image |
+ [![Test chess image](./camera_cal/calibration10.jpg)](./camera_cal/calibration10.jpg "Test chess image") | [![Corner detected image](./output_images/corners_chessboard_output.png)](./output_images/corners_chessboard_output.png "Corner detected image") 
+ --- | --- 
+ Test chess image | Corner detected image 
 
 To undistort chess board test image and calibrate the camera, we follow project videos preceeding this particular project. The steps taken:
 1. We create a calibrateCamera() function to get the cameraMatrix, distCoeff, rotationalVec, transVec and corners.
