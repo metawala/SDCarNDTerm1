@@ -124,8 +124,7 @@ After using all the techniques mentioned above and shown in the notebook, I used
 
 ### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 
-Click the screenshot below to navigate to my final video output.
-[![IMAGE ALT TEXT](./output_images/pipelineTest.png)](https://youtu.be/m5R33ddrpgY "Project Output")
+**[Click here](https://github.com/metawala/SDCarNDTerm1/blob/master/P5_Vehicle-Detection/project_video_output.mp4)** to navigate to the project video. The pipeline implemented in this project was tested on this video.
 
 ### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
