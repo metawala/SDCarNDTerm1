@@ -1,56 +1,58 @@
 # **Finding Lane Lines on the Road** 
-[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
-<img src="examples/laneLines_thirdPass.jpg" width="480" alt="Combined Image" />
+## The aim of this project is to use raw images and video samples provided and apply algorithms introduced in lectures to mark lane lines.
 
-Overview
+[![IMAGE ALT TEXT](./test_images_output/solidWhiteRight.jpg)](https://youtu.be/qgB_Scbco0o "Project Output")
+
 ---
 
-When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
+**Finding Lane Lines on the Road**
 
-In this project you will detect lane lines in images using Python and OpenCV.  OpenCV means "Open-Source Computer Vision", which is a package that has many useful tools for analyzing images.  
+As mentioned earlier the goals / steps of this project are the following:
+* Make a pipeline that finds lane lines on the road
+* Use the pipeline effective to find lane lines on a video
+* Reflect on your work in a written report
 
-To complete the project, two files will be submitted: a file containing project code and a file containing a brief write up explaining your solution. We have included template files to be used both for the [code](https://github.com/udacity/CarND-LaneLines-P1/blob/master/P1.ipynb) and the [writeup](https://github.com/udacity/CarND-LaneLines-P1/blob/master/writeup_template.md).The code file is called P1.ipynb and the writeup template is writeup_template.md 
-
-To meet specifications in the project, take a look at the requirements in the [project rubric](https://review.udacity.com/#!/rubrics/322/view)
-
-
-Creating a Great Writeup
----
-For this project, a great writeup should provide a detailed response to the "Reflection" section of the [project rubric](https://review.udacity.com/#!/rubrics/322/view). There are three parts to the reflection:
-
-1. Describe the pipeline
-
-2. Identify any shortcomings
-
-3. Suggest possible improvements
-
-We encourage using images in your writeup to demonstrate how your pipeline works.  
-
-All that said, please be concise!  We're not looking for you to write a book here: just a brief description.
-
-You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup. Here is a link to a [writeup template file](https://github.com/udacity/CarND-LaneLines-P1/blob/master/writeup_template.md). 
-
-
-The Project
 ---
 
-## If you have already installed the [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) you should be good to go!   If not, you should install the starter kit to get started on this project. ##
+### Project Reflection
 
-**Step 1:** Set up the [CarND Term1 Starter Kit](https://classroom.udacity.com/nanodegrees/nd013/parts/fbf77062-5703-404e-b60c-95b78b2f3f9e/modules/83ec35ee-1e02-48a5-bdb7-d244bd47c2dc/lessons/8c82408b-a217-4d09-b81d-1bda4c6380ef/concepts/4f1870e0-3849-43e4-b670-12e6f2d4b7a7) if you haven't already.
+### 1. Working on the pipeline.
 
-**Step 2:** Open the code in a Jupyter Notebook
+Working on the pipeline was fairly linearly based on the lecture topics that preceded this project. A few of my other colleagues are also taking this degree program and hence we do collaborate at times to discuss some strategies that might help improve the output of these projects.
 
-You will complete the project code in a Jupyter notebook.  If you are unfamiliar with Jupyter Notebooks, check out <A HREF="https://www.packtpub.com/books/content/basics-jupyter-notebook-and-python" target="_blank">Cyrille Rossant's Basics of Jupyter Notebook and Python</A> to get started.
+I introduce a new function - IdentifyLaneMarkings(). Detailed comments for this function are provided in the notebook. The pipeline consists of the following steps:
 
-Jupyter is an Ipython notebook where you can run blocks of code and see results interactively.  All the code for this project is contained in a Jupyter notebook. To start Jupyter in your browser, use terminal to navigate to your project directory and then run the following command at the terminal prompt (be sure you've activated your Python 3 carnd-term1 environment as described in the [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) installation instructions!):
+1. Initialize all the parameteres required by the function
+2. Convert input image to gray scale
+3. Apply Gaussian blur to the gray scale image
+4. Apply Canny edge detection to the Gaussian Blur Image
+5. Perfrom Hough transform on the edge detected image
+6. Apply region of interest
+7. Use weighted_img to apply mask on original image
 
-`> jupyter notebook`
+| [![Sample Image](./test_images/solidWhiteRight.jpg)](./test_images/solidWhiteRight.jpg "Sample Image") | [![Output Image](./test_images_output/solidWhiteRight.jpg)](./test_images_output/solidWhiteRight.jpg "Output Image") |
+|:---:|:---:|
+| Test image | Output image |
 
-A browser window will appear showing the contents of the current directory.  Click on the file called "P1.ipynb".  Another browser window will appear displaying the notebook.  Follow the instructions in the notebook to complete the project.  
+### 2. Working on videos and updating draw_lines().
 
-**Step 3:** Complete the project and submit both the Ipython notebook and the project writeup
+We now get asked to update draw_lines() so that we can apply our pipeline to successfully identify lane lines on videos.
+The crux of the problem here is to idetify the side of the lane line that you want to mark, viz. identify if a lane line marker is left lane marker of a right lane marker.
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+To achive this, we can do the following:
+1. Iterate through every x and y cordinates of a line from a list of lines.
+2. Find slope of the current line at hand from its x and y cordinates.
+3. Once we know if the lane is a right or a left lane from its slope, we append the cordinates to its respective list.
+4. After having iterated through all lines, we find the true cordinates using the equation of a line *y = mx + c*
+5. Having the true cordinates, we use cv2.line to draw a line at the location of our calculated X and Y cordinates.
 
+### 3. Identifying potential shortcomings and listing possible improvements for the pipeline
+
+#### Shortcomings
+* Currently as seen from the video ouput, lane lines cut during certain portions of the video. In a real world scenario this would be unacceptable.
+* During the course of writting the code for this project, it becomes very evident that the CV2 parameters used with CANNY and HOUGH really make a huge impact on the nature of line and accuracy of the detection.
+* The pipeline is implemented accurately towards the problem statement at hand, however the out is not perfectly as expected.
+
+#### Possible Improvements
+* More fine tuning of the CANNY and HOUGH parameters can be done so that the lane lines are detected with more accuracy and solidness during the course of the video.

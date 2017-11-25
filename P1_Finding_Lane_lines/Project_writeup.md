@@ -2,7 +2,7 @@
 
 ## The aim of this project is to use raw images and video samples provided and apply algorithms introduced in lectures to mark lane lines.
 
-[![IMAGE ALT TEXT](./test_images_output/solidWhiteRight.jpg)](https://youtu.be/B00_UafkUeI "Project Output")
+[![IMAGE ALT TEXT](./test_images_output/solidWhiteRight.jpg)](https://youtu.be/qgB_Scbco0o "Project Output")
 
 ---
 
