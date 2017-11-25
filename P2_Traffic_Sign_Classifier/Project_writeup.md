@@ -107,7 +107,23 @@ If a well known architecture was chosen:
 
 ## Test a Model on New Images
 
-I downloaded 10 random images from the internet. These images are saved in ./Downloaded_images/*. I decided not to modify any of these images to test how much it affects the accuracy during classification. The result shows that it does not make a very big difference. May be the results could have been more accurate if the images were to be resized to (32, 32,x) but we have not tested that. Also we use 1 of the signs which belong to an older version of German traffic sign.
+I downloaded 10 random images from the internet. These images are saved in ./Downloaded_images/*. I decided not to modify any of these images to test how much it affects the accuracy during classification. 
+
+### Discussion is made as to particular qualities of the images or traffic signs in the images that are of interest, such as whether they would be difficult for the model to classify.
+
+Out of the 10 images downloded there are particular images that are of interest wrt to challanges in classification.
+4 particular images are - **"Old_cyclists_crossing_theroad--Stock-Photo.jpg"**, **Arterial.jpg**, **pedestrian_crossing_Photo.jpg**, **Turn_right_ahead.jpg**
+
+The challenges with these images is the following:
+1. These images have watermarks in the background which tend to induce noise to the classifier
+2. The cyclist image is an old deprecated image for cyclist crossing where as the classifier was trained on newer german sign images.
+3. Arterial image is a generic caution/priority sign and is not part of the 43 classes that the classifier was trained on.
+
+As seen from the output of the classifier, we see that most of these images are identified correctly and the classifier does a very good job at making predictions.
+
+### The submission documents the performance of the model when tested on the captured images. The performance on the new images is compared to the accuracy results of the test set.
+
+The performance of these new images can be seen in the section Analyze Performace. On average we see that it is 60% accurate which can also be verified with the softmax predcitions and bar plots there. We see that the classifier does a very good job with these new downloaded images. The result shows that it does not make a very big difference. May be the results could have been more accurate if the images were to be resized to (32, 32,x) but we have not tested that. Also we use 1 of the signs which belong to an older version of German traffic sign.
 
 Here are the results of the prediction:
 
