@@ -126,7 +126,7 @@ After using all the techniques mentioned above and shown in the notebook, I used
 
 Click on the screenshot below to navigate to my project video. 
 
-[![IMAGE ALT TEXT](./output_images/pipelineTest1.png)](https://youtu.be/ru_N7khDqZ8 "Project Output")
+[![IMAGE ALT TEXT](./output_images/pipelineTest1.png)](https://youtu.be/IM-WszdU7nQ "Project Output")
 
 ### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
